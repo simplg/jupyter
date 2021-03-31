@@ -69,4 +69,4 @@ if guessed == word_to_guess:
 else:
     # sinon on affiche perdu
     print("PERDU !!!")
-print("Le mot était '{word_to_guess}' !")
+print(f"Le mot était '{word_to_guess}' !")
