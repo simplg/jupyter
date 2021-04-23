@@ -180,7 +180,7 @@ FROM film f
 INNER JOIN inventory iv ON iv.film_id = f.film_id
 INNER JOIN rental rt ON rt.inventory_id = iv.inventory_id
 WHERE LOWER(f.title) = "academy dinosaur" AND rt.return_date IS NOT NULL
-GROUP BY f.film_id;
+GROUP BY f.film_id, f.title;
 
 # 9a
 SELECT * 
