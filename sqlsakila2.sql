@@ -1,3 +1,4 @@
+SET lc_time_names = 'fr_FR';
 # Question 1
 SELECT MONTHNAME(rental_date) as mois 
 FROM rental 
@@ -51,26 +52,26 @@ FROM film
 INNER JOIN language lang ON lang.language_id = film.language_id 
 LIMIT 10;
 # Question 11
-SELECT film.title, a.first_name, a.last_name, film.release_year 
-FROM film 
-INNER JOIN film_actor fa ON fa.film_id = film.film_id 
-INNER JOIN actor a ON a.actor_id = fa.actor_id 
-WHERE UPPER(a.first_name) = "JENNIFER" AND UPPER(a.last_name) = "DAVIS" AND film.release_year = "2006";
+SELECT f.title, a.first_name, a.last_name, f.release_year 
+FROM actor a 
+INNER JOIN film_actor fa ON fa.actor_id = a.actor_id 
+INNER JOIN film f ON f.film_id = fa.film_id 
+WHERE UPPER(a.first_name) = "JENNIFER" AND UPPER(a.last_name) = "DAVIS" AND f.release_year = "2006";
 # Question 12
 SELECT c.first_name, c.last_name 
-FROM customer c 
-INNER JOIN rental rt ON rt.customer_id = c.customer_id 
-INNER JOIN inventory iv ON iv.inventory_id = rt.inventory_id 
-INNER JOIN film f ON f.film_id = iv.film_id 
+FROM film f 
+INNER JOIN inventory iv ON iv.film_id = f.film_id 
+INNER JOIN rental rt ON rt.inventory_id = iv.inventory_id 
+INNER JOIN customer c ON c.customer_id = rt.customer_id 
 WHERE f.title = "ALABAMA DEVIL";
 # Question 13
 SELECT DISTINCT(f.title) 
-FROM rental rt 
+FROM city ct 
+INNER JOIN address addr ON addr.city_id = ct.city_id 
+INNER JOIN customer c ON c.address_id = addr.address_id 
+INNER JOIN rental rt ON rt.customer_id = c.customer_id 
 INNER JOIN inventory iv ON iv.inventory_id = rt.inventory_id 
 INNER JOIN film f ON f.film_id = iv.film_id 
-INNER JOIN customer c ON c.customer_id = rt.customer_id 
-INNER JOIN address addr ON addr.address_id = c.address_id 
-INNER JOIN city ct ON ct.city_id = addr.city_id 
 WHERE ct.city = "Woodridge";
 # Question 14
 SELECT DISTINCT(f.title), rt.rental_date, rt.return_date, TIMEDIFF(rt.return_date, rt.rental_date) as duration 
@@ -82,9 +83,9 @@ ORDER BY duration ASC, f.title ASC
 LIMIT 10;
 # Question 15
 SELECT f.title, c.name 
-FROM film f 
-INNER JOIN film_category fc ON fc.film_id = f.film_id 
-INNER JOIN category c ON c.category_id = fc.category_id 
+FROM category c 
+INNER JOIN film_category fc ON fc.category_id = c.category_id 
+INNER JOIN film f ON f.film_id = fc.film_id
 WHERE c.name = "Action" 
 ORDER BY f.title ASC;
 # Question 16
@@ -122,7 +123,13 @@ INNER JOIN film f ON f.film_id = iv.film_id
 WHERE rt.return_date IS NOT NULL
 GROUP BY f.film_id
 ORDER BY moyenne_duree DESC;
-
+SELECT f.title, AVG(TIMEDIFF(rt.return_date, rt.rental_date)) as moyenne_duree
+FROM rental rt
+INNER JOIN inventory iv ON iv.inventory_id = rt.inventory_id
+INNER JOIN film f ON f.film_id = iv.film_id
+WHERE rt.return_date IS NOT NULL
+GROUP BY f.film_id
+ORDER BY moyenne_duree DESC;
 # 4a
 SELECT * 
 FROM film 
@@ -160,20 +167,20 @@ LIMIT 10;
 
 # 7 
 SELECT f.title, f.length
-FROM film f
-INNER JOIN film_actor fa ON fa.film_id = f.film_id
-INNER JOIN actor a ON a.actor_id = fa.actor_id
+FROM actor a
+INNER JOIN film_actor fa ON fa.actor_id = a.actor_id
+INNER JOIN film f ON f.film_id = fa.film_id
 WHERE LOWER(a.first_name) = "johnny" AND LOWER(a.last_name) = "lollobrigida"
 ORDER BY f.length DESC, f.title ASC 
 LIMIT 1;
 
 # 8
 SELECT f.film_id, f.title, (AVG(timestampdiff(SECOND, rt.rental_date, rt.return_date)) / (3600 * 24)) as moyenne_location
-FROM rental rt
-INNER JOIN inventory iv ON iv.inventory_id = rt.inventory_id
-INNER JOIN film f ON f.film_id = iv.film_id
-WHERE rt.return_date IS NOT NULL AND LOWER(f.title) = "academy dinosaur"
-GROUP BY f.film_id;
+FROM film f
+INNER JOIN inventory iv ON iv.film_id = f.film_id
+INNER JOIN rental rt ON rt.inventory_id = iv.inventory_id
+WHERE LOWER(f.title) = "academy dinosaur" AND rt.return_date IS NOT NULL
+GROUP BY f.film_id, f.title;
 
 # 9a
 SELECT * 
@@ -225,64 +232,64 @@ LIMIT 10;
 
 # 14 
 SELECT * 
-FROM film f 
-INNER JOIN film_category fc ON fc.film_id = f.film_id
-INNER JOIN category c ON c.category_id = fc.category_id
+FROM category c 
+INNER JOIN film_category fc ON fc.category_id = c.category_id
+INNER JOIN film f ON f.film_id = fc.film_id
 WHERE LOWER(c.name) = "action"
 ORDER BY f.title ASC;
 
 # 15
 SELECT DISTINCT(CONCAT(c.first_name, " ", c.last_name)) as customer_name
-FROM rental rt
-INNER JOIN inventory iv ON iv.inventory_id = rt.inventory_id
-INNER JOIN film f ON f.film_id = iv.film_id 
+FROM film f
+INNER JOIN inventory iv ON iv.film_id = f.film_id
+INNER JOIN rental rt ON rt.inventory_id = iv.inventory_id 
 INNER JOIN customer c ON c.customer_id = rt.customer_id 
 WHERE f.rating = "NC-17" 
 ORDER BY customer_name;
 
 # 16a (langues originelles)
 SELECT * 
-FROM film f 
+FROM category c 
+INNER JOIN film_category fc ON fc.category_id = c.category_id
+INNER JOIN film f ON f.film_id = fc.film_id
 INNER JOIN language lg ON lg.language_id = f.original_language_id
-INNER JOIN film_category fc ON fc.film_id = f.film_id
-INNER JOIN category c ON c.category_id = fc.category_id
 WHERE LOWER(c.name) = "animation" AND LOWER(lg.name) = "english";
 
 # 16b (pour les langues pas originelles)
 SELECT * 
-FROM film f 
+FROM category c 
+INNER JOIN film_category fc ON fc.category_id = c.category_id
+INNER JOIN film f ON f.film_id = fc.film_id
 INNER JOIN language lg ON lg.language_id = f.language_id
-INNER JOIN film_category fc ON fc.film_id = f.film_id
-INNER JOIN category c ON c.category_id = fc.category_id
 WHERE LOWER(c.name) = "animation" AND LOWER(lg.name) = "english";
 
 # 17a
 SELECT f.title
-FROM film f
-INNER JOIN film_actor fa ON fa.film_id = f.film_id
-INNER JOIN actor a ON a.actor_id = fa.actor_id
+FROM actor a
+INNER JOIN film_actor fa USING(actor_id)
+INNER JOIN film f USING(film_id)
 WHERE LOWER(a.first_name) = "jennifer"
 ORDER BY f.title ASC;
 
 # 17b1
 SELECT * 
-FROM film f
-INNER JOIN film_actor fa ON fa.film_id = f.film_id
-INNER JOIN actor a ON a.actor_id = fa.actor_id
+FROM actor a
+INNER JOIN film_actor fa USING(actor_id)
+INNER JOIN film f USING(film_id)
 WHERE LOWER(a.first_name) = "johnny" AND f.film_id IN 
 (
 SELECT f.film_id
-FROM film f
-INNER JOIN film_actor fa ON fa.film_id = f.film_id
-INNER JOIN actor a ON a.actor_id = fa.actor_id
+FROM actor a
+INNER JOIN film_actor fa USING(actor_id)
+INNER JOIN film f USING(film_id)
 WHERE LOWER(a.first_name) = "jennifer"
 );
 
 # 17b2
 SELECT f.film_id, f.title, IF(COUNT(*) = 2, "oui", "non") as is_duo
-FROM film f
-INNER JOIN film_actor fa ON fa.film_id = f.film_id
-INNER JOIN actor a ON a.actor_id = fa.actor_id
+FROM actor a
+INNER JOIN film_actor fa USING(actor_id)
+INNER JOIN film f USING(film_id)
 WHERE LOWER(a.first_name) IN ("jennifer", "johnny")
 GROUP BY f.film_id
 HAVING is_duo = "oui"
@@ -305,6 +312,16 @@ FROM rental rt
 INNER JOIN inventory iv ON iv.inventory_id = rt.inventory_id
 INNER JOIN store st ON st.store_id = iv.store_id 
 INNER JOIN address addr ON addr.address_id = st.address_id
+INNER JOIN city ct ON ct.city_id = addr.city_id
+GROUP BY ct.city_id 
+ORDER BY nb_rental_by_cit DESC 
+LIMIT 10;
+
+# 19b: version avec la ville des clients
+SELECT ct.city, COUNT(*) as nb_rental_by_cit
+FROM rental rt
+INNER JOIN customer c ON c.customer_id = rt.customer_id
+INNER JOIN address addr ON addr.address_id = c.address_id
 INNER JOIN city ct ON ct.city_id = addr.city_id
 GROUP BY ct.city_id 
 ORDER BY nb_rental_by_cit DESC 
