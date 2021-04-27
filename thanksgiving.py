@@ -46,7 +46,7 @@ print(
     data[tgs_cols["CELEBRATE"]].value_counts(),
     "\n"
     )
-actual_tgs = data[data[tgs_cols["CELEBRATE"]] == "Yes"]
+actual_tgs = data[data[tgs_cols["CELEBRATE"]] == "Yes"].copy()
 print(tgs_cols["CELEBRATE"], "= Yes\n", actual_tgs, "\n")
 
 print(
@@ -97,9 +97,9 @@ def age_to_int(age):
     return int(age.split()[0].replace("+", ""))
 
 
-data["int_age"] = data["Age"].apply(age_to_int)
+actual_tgs["int_age"] = actual_tgs["Age"].apply(age_to_int)
 print("\nQuestion 1 :")
-print(data["int_age"].describe())
+print(actual_tgs["int_age"].describe())
 
 
 def revenue_to_int(revenue):
@@ -112,27 +112,27 @@ def revenue_to_int(revenue):
     return int(revenue)
 
 
-data["int_income"] = data[tgs_cols["REVENUE"]].apply(revenue_to_int)
+actual_tgs["int_income"] = actual_tgs[tgs_cols["REVENUE"]].apply(revenue_to_int)
 print("\nQuestion 2 :")
-print(data["int_income"].describe())
+print(actual_tgs["int_income"].describe())
 
 print("\nQuestion 3 :")
-lower_than_15 = data["int_income"] < 150000
+lower_than_15 = actual_tgs["int_income"] < 150000
 print("Pour les revenues inférieurs à 150 000 :")
-print(data[tgs_cols["TRAVEL"]][lower_than_15].value_counts())
-superior_than_15 = data["int_income"] >= 150000
+print(actual_tgs[tgs_cols["TRAVEL"]][lower_than_15].value_counts())
+superior_than_15 = actual_tgs["int_income"] >= 150000
 print("Pour les revenues supérieurs à 150 000 :")
-print(data[tgs_cols["TRAVEL"]][superior_than_15].value_counts())
+print(actual_tgs[tgs_cols["TRAVEL"]][superior_than_15].value_counts())
 
 print("\nQuestion 4 :")
 print("\n1. Pour l'age :")
-print(data.pivot_table(
+print(actual_tgs.pivot_table(
     index=tgs_cols["MEET_UP"],
     columns=tgs_cols["FRIENDSGIVING"],
     values="int_age"
     ))
 print("\n2. Pour le revenue :")
-print(data.pivot_table(
+print(actual_tgs.pivot_table(
     index=tgs_cols["MEET_UP"],
     columns=tgs_cols["FRIENDSGIVING"],
     values="int_income"
