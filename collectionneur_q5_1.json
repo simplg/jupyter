@@ -1,0 +1,31 @@
+// On remarque que le document contient des voitures rouge aussi
+// C'est cependant normal car il sélectionne les documents qui possèdent des voitures noires
+[{
+  "_id": {
+    "$oid": "60940180a2c35439eab67d30"
+  },
+  "Propriétaire": "Valerio",
+  "voitures": [
+    {
+      "Marque": "Ferrari",
+      "Modèle": "F40",
+      "Dénomination": "Testarossa",
+      "Cylindrée": 2936,
+      "Couleur": "Rouge"
+    },
+    {
+      "Marque": "Pontiac",
+      "Modèle": "Firebird",
+      "Dénomination": "KITT",
+      "Cylindrée": 5700,
+      "Couleur": "Noir"
+    },
+    {
+      "Marque": "Chevrolet",
+      "Modèle": "Corvette",
+      "Dénomination": "Lola",
+      "Cylindrée": 5400,
+      "Couleur": "Rouge"
+    }
+  ]
+}]

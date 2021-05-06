@@ -1,0 +1,25 @@
+// On utilise donc des aggrégateurs afin de n'avoir que les voitures noirs dans le document les contenant
+[{
+    $unwind: {
+        path: "$voitures",
+    }
+}, {
+    $match: {
+        'voitures.Couleur': 'Noir'
+    }
+}, {
+    $group: {
+        _id: "$_id",
+        voitures: {
+            $push: '$voitures'
+        }
+    }
+}]
+// results :
+{ _id: ObjectId("60940180a2c35439eab67d30"),
+    voitures: 
+     [ { Marque: 'Pontiac',
+         'Modèle': 'Firebird',
+         'Dénomination': 'KITT',
+         'Cylindrée': 5700,
+         Couleur: 'Noir' } ] }
