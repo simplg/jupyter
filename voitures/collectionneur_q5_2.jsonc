@@ -12,6 +12,9 @@ db.collectionneur.aggregate([{
 }, {
     $group: {
         _id: "$_id",
+        Propriétaire: {
+            "$first": "$Propriétaire"
+        },
         voitures: {
             $push: "$voitures"
         }
