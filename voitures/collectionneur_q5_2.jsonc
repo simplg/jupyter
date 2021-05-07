@@ -1,0 +1,48 @@
+// On utilise donc des aggrégateurs afin de n"avoir que les voitures noirs dans le document les contenant
+// commandes:
+/*
+db.collectionneur.aggregate([{
+    $unwind: {
+        path: "$voitures",
+    }
+}, {
+    $match: {
+        "voitures.Couleur": "Noir"
+    }
+}, {
+    $group: {
+        _id: "$_id",
+        voitures: {
+            $push: "$voitures"
+        }
+    }
+}])
+*/
+// resultats :
+[{ 
+    "_id": {
+        "$oid": "60954661a2c35439eab67d36"
+    },
+    "voitures": [
+        {
+            "Marque": "Pontiac",
+            "Modèle": "Firebird",
+            "Dénomination": "KITT",
+            "Cylindrée": 5700,
+            "Couleur": "Noir"
+        }
+    ]
+}, {
+      "_id": {
+        "$oid": "60954661a2c35439eab67d35"
+      },
+    "voitures": [
+        {
+            "Marque": "De Tomaso",
+            "Modèle": "Pantera",
+            "Dénomination": "",
+            "Cylindrée": 5800,
+            "Couleur": "Noir"
+        }
+    ]
+}]

@@ -1,0 +1,95 @@
+// commandes:
+/* 
+db.voitures.find()
+*/
+[{
+  "_id": {
+    "$oid": "6093e80bc61669204061d39f"
+  },
+  "Marque": "Ferrari",
+  "Modèle": "F40",
+  "Dénomination": "Testarossa",
+  "Cylindrée": 2936,
+  "Couleur": "Rouge",
+  "Propriétaire": "Valerio"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a0"
+  },
+  "Marque": "Lamborghini",
+  "Modèle": "Countach",
+  "Dénomination": "",
+  "Cylindrée": 5167,
+  "Couleur": "Jaune",
+  "Propriétaire": "Rafik"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a1"
+  },
+  "Marque": "De Tomaso",
+  "Modèle": "Pantera",
+  "Dénomination": "",
+  "Cylindrée": 5800,
+  "Couleur": "Noir",
+  "Propriétaire": "Rafik"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a2"
+  },
+  "Marque": "Pontiac",
+  "Modèle": "Firebird",
+  "Dénomination": "KITT",
+  "Cylindrée": 5700,
+  "Couleur": "Noir",
+  "Propriétaire": "Valerio"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a3"
+  },
+  "Marque": "Volkswagen",
+  "Modèle": "Coccinelle",
+  "Dénomination": "Choupette",
+  "Cylindrée": 1584,
+  "Couleur": "Blanc",
+  "Propriétaire": "Laurent"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a4"
+  },
+  "Marque": "Ford",
+  "Modèle": "Mustang",
+  "Dénomination": "Eleanor",
+  "Cylindrée": 7000,
+  "Couleur": "Gris",
+  "Propriétaire": "Rafik"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a5"
+  },
+  "Marque": "Chevrolet",
+  "Modèle": "Corvette",
+  "Dénomination": "Lola",
+  "Cylindrée": 5400,
+  "Couleur": "Rouge",
+  "Propriétaire": "Valerio"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a6"
+  },
+  "Marque": "Cadillac",
+  "Modèle": "Eldorado",
+  "Dénomination": "Ectomobil-1",
+  "Cylindrée": 6400,
+  "Couleur": "Blanc",
+  "Propriétaire": "Laurent"
+},{
+  "_id": {
+    "$oid": "6093e80bc61669204061d3a7"
+  },
+  "Marque": "Dodge",
+  "Modèle": "Charger",
+  "Dénomination": "General Lee",
+  "Cylindrée": 7206,
+  "Couleur": "Orange",
+  "Propriétaire": "Rafik"
+}]

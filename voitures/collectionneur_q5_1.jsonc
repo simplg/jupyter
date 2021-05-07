@@ -1,0 +1,70 @@
+// commandes:
+/*
+db.collectionneur.find({"voitures.Couleur": 'Noir'})
+*/
+// On remarque que le document contient des voitures rouge aussi
+// C'est cependant normal car il sélectionne les documents qui possèdent des voitures noires
+[{
+  "_id": {
+    "$oid": "60954661a2c35439eab67d35"
+  },
+  "Propriétaire": "Rafik",
+  "voitures": [
+    {
+      "Marque": "Lamborghini",
+      "Modèle": "Countach",
+      "Dénomination": "",
+      "Cylindrée": 5167,
+      "Couleur": "Jaune"
+    },
+    {
+      "Marque": "De Tomaso",
+      "Modèle": "Pantera",
+      "Dénomination": "",
+      "Cylindrée": 5800,
+      "Couleur": "Noir"
+    },
+    {
+      "Marque": "Ford",
+      "Modèle": "Mustang",
+      "Dénomination": "Eleanor",
+      "Cylindrée": 7000,
+      "Couleur": "Gris"
+    },
+    {
+      "Marque": "Dodge",
+      "Modèle": "Charger",
+      "Dénomination": "General Lee",
+      "Cylindrée": 7206,
+      "Couleur": "Orange"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "60954661a2c35439eab67d36"
+  },
+  "Propriétaire": "Valerio",
+  "voitures": [
+    {
+      "Marque": "Ferrari",
+      "Modèle": "F40",
+      "Dénomination": "Testarossa",
+      "Cylindrée": 2936,
+      "Couleur": "Rouge"
+    },
+    {
+      "Marque": "Pontiac",
+      "Modèle": "Firebird",
+      "Dénomination": "KITT",
+      "Cylindrée": 5700,
+      "Couleur": "Noir"
+    },
+    {
+      "Marque": "Chevrolet",
+      "Modèle": "Corvette",
+      "Dénomination": "Lola",
+      "Cylindrée": 5400,
+      "Couleur": "Rouge"
+    }
+  ]
+}]
