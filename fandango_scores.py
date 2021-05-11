@@ -118,4 +118,14 @@ plt.ylim(0,5)
 plt.xticks(rotation=90)
 plt.tight_layout(h_pad=3.0)
 plt.savefig("img/fandango9.png", format="png")
+plt.show(block=False)
+
+# Marie
+cols = ['RT_user_norm', 'Metacritic_user_nom', 'IMDB_norm', 'Fandango_Ratingvalue']
+print(norm_review[cols])
+fig = plt.figure(figsize=[10, 10])
+plt.boxplot(norm_review[cols])
+plt.xticks(ticks=range(1, len(cols)+1), labels=cols, rotation=90)
+plt.tight_layout(h_pad=3.0)
+plt.savefig("img/fandango9-marie.png", format="png")
 plt.show()
