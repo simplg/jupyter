@@ -52,4 +52,4 @@ def score2(p: str, s: str) -> int:
     return score
 
 # print(score2("Ma voiture préféré est en jaune !", "Ma voiture jaune est pas toute jeune mais je l'ai acheté en June et je l'appelle jarune iaune"))
-print(pluslarge('trois', 'Les etrois tris, lys trois gros, les troisx roi.'))
+# print(pluslarge('trois', 'Les etrois tris, lys trois gros, les troisx roi.'))
