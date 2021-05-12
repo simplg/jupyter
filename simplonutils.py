@@ -1,15 +1,16 @@
-import re
+import regex as re
 def almost(mot: str, s: str) -> list:
     words = ["".join([mot[j] if j != i else mot[j]+"?" for j in range(len(mot))]) for i in range(len(mot))]
     searchRegex = re.compile(r'[^a-z]('+ "|".join(words) +')[^a-z]', flags=re.IGNORECASE)
-    return searchRegex.findall(" "+s)
+    return searchRegex.findall(" "+s, overlapped=True)
 
 # print(almost("Jaune", "Ma voiture jaune est pas toute jeune mais je l'ai acheté en June et je l'appelle jarune iaune"))
 
 def pluslarge(mot: str, s: str) -> list:
+
     words = ["".join([mot[j] if j != i else mot[j]+"?.{0,1}" for j in range(len(mot))]) for i in range(len(mot))]
-    searchRegex = re.compile(r'[^a-z]('+ "|".join(words) +')[^a-z]', flags=re.IGNORECASE)
-    return searchRegex.findall(" "+s)
+    searchRegex = re.compile(r'[^a-z]('+ "|".join(words) + '|[a-z]' + mot +')[^a-z]', flags=re.IGNORECASE)
+    return searchRegex.findall(" "+s, overlapped=True)
 
 # print(pluslarge("Jaune", "Ma voiture jaune est pas toute jeune mais je l'ai acheté en June et je l'appelle jarune iaune"))
 
@@ -51,4 +52,4 @@ def score2(p: str, s: str) -> int:
     return score
 
 # print(score2("Ma voiture préféré est en jaune !", "Ma voiture jaune est pas toute jeune mais je l'ai acheté en June et je l'appelle jarune iaune"))
-# print(almost('trois', 'Les etrois tris, lys trois gros, les troisx roi.'))
+# print(pluslarge('trois', 'Les etrois tris, lys trois gros, les troisx roi.'))
