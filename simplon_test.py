@@ -98,6 +98,12 @@ def test_search():
             mess='Une lettre peut être remplacé ou ajouté, pas les deux'
         ),
         ItemSearch(
+            test='te',
+            arg='et',
+            expected=0,
+            mess='Une lettre peut être remplacé ou ajouté, pas les deux'
+        ),
+        ItemSearch(
             test="C'est",
             arg='et',
             expected=1,

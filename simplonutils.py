@@ -2,17 +2,18 @@ import regex as re
 def almost(mot: str, s: str) -> list:
     words = ["".join([mot[j] if j != i else mot[j]+"?" for j in range(len(mot))]) for i in range(len(mot))]
     searchRegex = re.compile(r'\b('+ r"|".join(words) + r')\b', flags=re.IGNORECASE)
-    return searchRegex.findall(" "+s, overlapped=True)
+    return searchRegex.findall(s, overlapped=True)
 
 # print(almost("Jaune", "Ma voiture jaune est pas toute jeune mais je l'ai acheté en June et je l'appelle jarune iaune"))
 
 def pluslarge(mot: str, s: str) -> list:
 
     words = ["".join([mot[j] if j != i else mot[j]+"?.{0,1}" for j in range(len(mot))]) for i in range(len(mot))]
-    searchRegex = re.compile(r'\b('+ r"|".join(words) + r'|[a-z]' + mot + r')\b', flags=re.IGNORECASE)
-    return searchRegex.findall(" "+s, overlapped=True)
+    searchRegex = re.compile(r'\b('+ r"|".join(words) + r'|\w' + mot + r')\b', flags=re.IGNORECASE)
+    print(searchRegex)
+    return searchRegex.findall(s, overlapped=True)
 
-# print(pluslarge("Jaune", "Ma voiture jaune est pas toute jeune mais je l'ai acheté en June et je l'appelle jarune iaune"))
+# print(pluslarge("le", "ce me el e superbe"))
 
 def score(p: str, s: str) -> int:
     words = p.split(' ')
@@ -28,7 +29,7 @@ def score(p: str, s: str) -> int:
                     score += 1
     return score
 
-# print(score("Ma voiture préféré est en jaune !", "Ma voiture jaune est pas toute jeune mais je l'ai acheté en June et je l'appelle jarune iaune"))
+# print(score("Le petit bonhomme en mousse", "Ce superbe matelas en mousse naturelle"))
 
 def score2(p: str, s: str) -> int:
     words = p.split(' ')

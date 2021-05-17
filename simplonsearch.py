@@ -1,6 +1,7 @@
 import os
 from simplonutils import score2
 from typing import Tuple
+
 class File:
     content: str = ""
     filename: str = ""
