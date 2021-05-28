@@ -170,6 +170,23 @@ CREATE TABLE `looking_job` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `other_database`
+--
+
+DROP TABLE IF EXISTS `other_database`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `other_database` (
+  `db_id` int NOT NULL,
+  `sgi_id` int NOT NULL,
+  PRIMARY KEY (`db_id`,`sgi_id`),
+  KEY `sgi_id` (`sgi_id`),
+  CONSTRAINT `other_database_ibfk_1` FOREIGN KEY (`db_id`) REFERENCES `database` (`db_id`),
+  CONSTRAINT `other_database_ibfk_2` FOREIGN KEY (`sgi_id`) REFERENCES `sondage_item` (`sgi_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `other_duties`
 --
 
@@ -229,7 +246,6 @@ CREATE TABLE `sondage_item` (
   `ctr_id` int DEFAULT NULL,
   `primary_db_id` int DEFAULT NULL,
   `emp_id` int DEFAULT NULL,
-  `other_db_id` int DEFAULT NULL,
   `job_id` int DEFAULT NULL,
   `mcp_id` int DEFAULT NULL,
   `edu_id` int DEFAULT NULL,
@@ -243,7 +259,6 @@ CREATE TABLE `sondage_item` (
   KEY `ctr_id` (`ctr_id`),
   KEY `primary_db_id` (`primary_db_id`),
   KEY `emp_id` (`emp_id`),
-  KEY `other_db_id` (`other_db_id`),
   KEY `job_id` (`job_id`),
   KEY `mcp_id` (`mcp_id`),
   KEY `edu_id` (`edu_id`),
@@ -253,18 +268,17 @@ CREATE TABLE `sondage_item` (
   KEY `look_id` (`look_id`),
   KEY `cap_id` (`cap_id`),
   CONSTRAINT `sondage_item_ibfk_1` FOREIGN KEY (`sdg_id`) REFERENCES `sondage` (`sdg_id`),
-  CONSTRAINT `sondage_item_ibfk_10` FOREIGN KEY (`pop_id`) REFERENCES `largest_city` (`pop_id`),
-  CONSTRAINT `sondage_item_ibfk_11` FOREIGN KEY (`sec_id`) REFERENCES `employment_sector` (`sec_id`),
-  CONSTRAINT `sondage_item_ibfk_12` FOREIGN KEY (`look_id`) REFERENCES `looking_job` (`look_id`),
-  CONSTRAINT `sondage_item_ibfk_13` FOREIGN KEY (`cap_id`) REFERENCES `carreer_plan` (`cap_id`),
+  CONSTRAINT `sondage_item_ibfk_10` FOREIGN KEY (`sec_id`) REFERENCES `employment_sector` (`sec_id`),
+  CONSTRAINT `sondage_item_ibfk_11` FOREIGN KEY (`look_id`) REFERENCES `looking_job` (`look_id`),
+  CONSTRAINT `sondage_item_ibfk_12` FOREIGN KEY (`cap_id`) REFERENCES `carreer_plan` (`cap_id`),
   CONSTRAINT `sondage_item_ibfk_2` FOREIGN KEY (`ctr_id`) REFERENCES `country` (`ctr_id`),
   CONSTRAINT `sondage_item_ibfk_3` FOREIGN KEY (`primary_db_id`) REFERENCES `database` (`db_id`),
   CONSTRAINT `sondage_item_ibfk_4` FOREIGN KEY (`emp_id`) REFERENCES `employment_status` (`emp_id`),
-  CONSTRAINT `sondage_item_ibfk_5` FOREIGN KEY (`other_db_id`) REFERENCES `database` (`db_id`),
-  CONSTRAINT `sondage_item_ibfk_6` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`),
-  CONSTRAINT `sondage_item_ibfk_7` FOREIGN KEY (`mcp_id`) REFERENCES `how_many_companies` (`mcp_id`),
-  CONSTRAINT `sondage_item_ibfk_8` FOREIGN KEY (`edu_id`) REFERENCES `education` (`edu_id`),
-  CONSTRAINT `sondage_item_ibfk_9` FOREIGN KEY (`cert_id`) REFERENCES `certification` (`cert_id`)
+  CONSTRAINT `sondage_item_ibfk_5` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`),
+  CONSTRAINT `sondage_item_ibfk_6` FOREIGN KEY (`mcp_id`) REFERENCES `how_many_companies` (`mcp_id`),
+  CONSTRAINT `sondage_item_ibfk_7` FOREIGN KEY (`edu_id`) REFERENCES `education` (`edu_id`),
+  CONSTRAINT `sondage_item_ibfk_8` FOREIGN KEY (`cert_id`) REFERENCES `certification` (`cert_id`),
+  CONSTRAINT `sondage_item_ibfk_9` FOREIGN KEY (`pop_id`) REFERENCES `largest_city` (`pop_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -308,4 +322,4 @@ CREATE TABLE `task_performed` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-28 10:44:45
+-- Dump completed on 2021-05-28 11:28:41
