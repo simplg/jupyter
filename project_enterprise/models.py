@@ -1,6 +1,5 @@
 from re import I
-import sqlalchemy
-from sqlalchemy import Column, String, Integer, VARCHAR, SMALLINT, DATETIME, DECIMAL, ForeignKey
+from sqlalchemy import Column, Integer, VARCHAR, SMALLINT, DATETIME, DECIMAL, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.engine import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -90,6 +89,11 @@ class TaskPerformed(Base):
     tas_id = Column('tas_id', Integer, ForeignKey('task.tas_id'), primary_key=True)
     sgi_id = Column('sgi_id', Integer, ForeignKey('sondage_item.sgi_id'), primary_key=True)
 
+class OtherDatabase(Base):
+    __tablename__ = 'other_database'
+    db_id = Column('db_id', Integer, ForeignKey('database.db_id'), primary_key=True)
+    sgi_id = Column('sgi_id', Integer, ForeignKey('sondage_item.sgi_id'), primary_key=True)
+
 class SondageItem(Base):
     __tablename__ = 'sondage_item'
     id = Column('sgi_id', Integer, primary_key=True)
@@ -113,7 +117,6 @@ class SondageItem(Base):
     ctr_id = Column(Integer, ForeignKey('country.ctr_id'))
     primary_db_id = Column(Integer, ForeignKey('database.db_id'))
     emp_id = Column(Integer, ForeignKey('employment_status.emp_id'))
-    other_db_id = Column(Integer, ForeignKey('database.db_id'))
     job_id = Column(Integer, ForeignKey('job.job_id'))
     mcp_id = Column(Integer, ForeignKey('how_many_companies.mcp_id'))
     edu_id = Column(Integer, ForeignKey('education.edu_id'))
@@ -123,12 +126,12 @@ class SondageItem(Base):
     look_id = Column(Integer, ForeignKey('looking_job.look_id'))
     cap_id = Column(Integer, ForeignKey('carreer_plan.cap_id'))
     sondage = relationship("Sondage", back_populates="sondages")
+    other_db = relationship("OtherDatabase", secondary=OtherDatabase)
     other_jobs = relationship("Job", secondary=OtherDuties)
     task_perfomed = relationship("Task", secondary=TaskPerformed)
     country = relationship("Country")
     primary_db = relationship("Database", foreign_keys=[primary_db_id])
     employment_status = relationship("EmploymentStatus")
-    other_db = relationship("Databse", foreign_keys=[other_db_id])
     job = relationship("Job")
     how_many_companies = relationship("HowManyCompanies")
     education = relationship("Education")
