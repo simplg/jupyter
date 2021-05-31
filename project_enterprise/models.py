@@ -56,7 +56,7 @@ class Sondage(Base):
 class EmploymentStatus(Base):
     __tablename__ = 'employment_status'
     id = Column('emp_id', Integer, primary_key=True)
-    status = Column('emp_status', VARCHAR(50))
+    status = Column('emp_status', VARCHAR(75))
 
 class Education(Base):
     __tablename__ = 'education'
@@ -141,5 +141,6 @@ class SondageItem(Base):
     carreer_plan = relationship("CarreerPlan")
     
 
-db = create_engine('mysql://akuma06:sdfsdf23@localhost/simplon')
+db = create_engine('mysql://akuma06:sdfsdf23@localhost/')
+db.execute("DROP DATABASE IF EXISTS simplon;CREATE DATABASE simplon;USE simplon;")
 Base.metadata.create_all(db)
