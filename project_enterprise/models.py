@@ -97,7 +97,6 @@ class OtherDatabase(Base):
 class SondageItem(Base):
     __tablename__ = 'sondage_item'
     id = Column('sgi_id', Integer, primary_key=True)
-    survey_year = Column('survey_year', SMALLINT)
     timestamp = Column('timestamp', DATETIME)
     salary_usd = Column('salary_usd', DECIMAL(10,2))
     postal_code = Column('postal_code', VARCHAR(10))
@@ -141,7 +140,6 @@ class SondageItem(Base):
     looking_job = relationship("LookingJob")
     carreer_plan = relationship("CarreerPlan")
     
-
 
 db = create_engine('mysql://akuma06:sdfsdf23@localhost/simplon')
 Base.metadata.create_all(db)
