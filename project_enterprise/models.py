@@ -72,7 +72,7 @@ class Gender(enum.Enum):
 class HowManyCompanies(Base):
     __tablename__ = 'how_many_companies'
     id = Column('mcp_id', Integer, primary_key=True)
-    many_companies = Column('mcp_many_companies', VARCHAR(50))
+    many_companies = Column('mcp_many_companies', VARCHAR(75))
 
 class LargestCity(Base):
     __tablename__ = 'largest_city'
