@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `simplon` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `simplon`;
 -- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: simplon
@@ -226,7 +228,6 @@ DROP TABLE IF EXISTS `sondage_item`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sondage_item` (
   `sgi_id` int NOT NULL AUTO_INCREMENT,
-  `survey_year` smallint DEFAULT NULL,
   `timestamp` datetime DEFAULT NULL,
   `salary_usd` decimal(10,2) DEFAULT NULL,
   `postal_code` varchar(10) DEFAULT NULL,
@@ -322,4 +323,4 @@ CREATE TABLE `task_performed` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-28 11:28:41
+-- Dump completed on 2021-05-31 14:18:41
