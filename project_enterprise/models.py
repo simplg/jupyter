@@ -16,7 +16,7 @@ class Database(Base):
 class Job(Base):
     __tablename__ = 'job'
     id = Column('job_id', Integer, primary_key=True)
-    name = Column('job_name', VARCHAR(100))
+    name = Column('job_name', VARCHAR(150))
 
 class Certification(Base):
     __tablename__ = 'certification'
