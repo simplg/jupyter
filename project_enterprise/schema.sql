@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `simplon` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `simplon` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `simplon`;
 -- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
@@ -28,7 +28,7 @@ CREATE TABLE `carreer_plan` (
   `cap_id` int NOT NULL AUTO_INCREMENT,
   `cap_plan` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cap_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `certification` (
   `cert_id` int NOT NULL AUTO_INCREMENT,
   `cert_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cert_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,7 +56,7 @@ CREATE TABLE `country` (
   `ctr_id` int NOT NULL AUTO_INCREMENT,
   `ctr_name` varchar(42) DEFAULT NULL,
   PRIMARY KEY (`ctr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `database` (
   `db_id` int NOT NULL AUTO_INCREMENT,
   `db_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`db_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `education` (
   `edu_id` int NOT NULL AUTO_INCREMENT,
   `edu_title` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`edu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `employment_sector` (
   `sec_id` int NOT NULL AUTO_INCREMENT,
   `sec_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`sec_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `employment_status` (
   `emp_id` int NOT NULL AUTO_INCREMENT,
   `emp_status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`emp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `how_many_companies` (
   `mcp_id` int NOT NULL AUTO_INCREMENT,
   `mcp_many_companies` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`mcp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `job` (
   `job_id` int NOT NULL AUTO_INCREMENT,
   `job_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `largest_city` (
   `pop_id` int NOT NULL AUTO_INCREMENT,
   `pop_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`pop_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `looking_job` (
   `look_id` int NOT NULL AUTO_INCREMENT,
   `look_job` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`look_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +185,7 @@ CREATE TABLE `other_database` (
   KEY `sgi_id` (`sgi_id`),
   CONSTRAINT `other_database_ibfk_1` FOREIGN KEY (`db_id`) REFERENCES `database` (`db_id`),
   CONSTRAINT `other_database_ibfk_2` FOREIGN KEY (`sgi_id`) REFERENCES `sondage_item` (`sgi_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +202,7 @@ CREATE TABLE `other_duties` (
   KEY `sgi_id` (`sgi_id`),
   CONSTRAINT `other_duties_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`),
   CONSTRAINT `other_duties_ibfk_2` FOREIGN KEY (`sgi_id`) REFERENCES `sondage_item` (`sgi_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +216,7 @@ CREATE TABLE `sondage` (
   `sdg_id` int NOT NULL AUTO_INCREMENT,
   `sdg_year` smallint DEFAULT NULL,
   PRIMARY KEY (`sdg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +280,7 @@ CREATE TABLE `sondage_item` (
   CONSTRAINT `sondage_item_ibfk_7` FOREIGN KEY (`edu_id`) REFERENCES `education` (`edu_id`),
   CONSTRAINT `sondage_item_ibfk_8` FOREIGN KEY (`cert_id`) REFERENCES `certification` (`cert_id`),
   CONSTRAINT `sondage_item_ibfk_9` FOREIGN KEY (`pop_id`) REFERENCES `largest_city` (`pop_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +294,7 @@ CREATE TABLE `task` (
   `tas_id` int NOT NULL AUTO_INCREMENT,
   `tas_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`tas_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -311,7 +311,7 @@ CREATE TABLE `task_performed` (
   KEY `sgi_id` (`sgi_id`),
   CONSTRAINT `task_performed_ibfk_1` FOREIGN KEY (`tas_id`) REFERENCES `task` (`tas_id`),
   CONSTRAINT `task_performed_ibfk_2` FOREIGN KEY (`sgi_id`) REFERENCES `sondage_item` (`sgi_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
