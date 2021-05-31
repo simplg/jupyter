@@ -37,7 +37,7 @@ class Customer():
         return (
             f"Prénom : {self.firstname}\n"
             f"Nom : {self.lastname}\n"
-            f"email : {self.email}\n"
+            f"Email : {self.email}"
         )
 
 
@@ -60,7 +60,7 @@ class Address():
             f"Code Postal : {self.postal_code}\n"
             f"District : {self.district}\n"
             f"Location : {self.location}\n"
-            f"Phone : {self.phone}\n"
+            f"Phone : {self.phone}"
         )
 
 
